@@ -16,27 +16,24 @@ export default function IndexPage() {
 
   return (
     <div className="container">
-      <h1>The NewYork Times Best Seller Explorer</h1>
+      <h1 className="title">The NewYork Times Best Seller Explorer</h1>
 
       {isLoading ? (
-        <h3>Loading...</h3>
+        <h3 className="loading">Loading...</h3>
       ) : (
-        <ul>
-          {lists.map((list) => (
-            <li key={list.list_name}>
-              <Link href={`/list/${list.list_name_encoded}`}>
-                {list.list_name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <>
+          <h3 className="lists_title">● BEST SELLER CATEGORY</h3>
+          <ul className="lists">
+            {lists.map((list) => (
+              <li key={list.list_name} className="list">
+                <Link href={`/list/${list.list_name_encoded}`}>
+                  <a>{list.list_name} &rarr;</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
-      <style jsx>{`
-        .container {
-          display: flex;
-          flex-direction: column;
-        }
-      `}</style>
     </div>
   );
 }
